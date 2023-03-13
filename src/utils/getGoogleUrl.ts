@@ -1,4 +1,3 @@
-import { auth } from '../firebase';
 import { GoogleAuthProvider } from "firebase/auth";
 
 export const getGoogleUrl = (from: string) => {
