@@ -1,10 +1,13 @@
+import { auth } from '../firebase';
+import { GoogleAuthProvider } from "firebase/auth";
+
 export const getGoogleUrl = (from: string) => {
   const rootUrl = `https://accounts.google.com/o/oauth2/auth`;
 
   const options = {
     redirect_uri: import.meta.env.VITE_GOOGLE_OAUTH_REDIRECT as string,
     client_id: import.meta.env.VITE_GOOGLE_OAUTH_CLIENT_ID as string,
-    
+
     response_type: "code",
     access_token_url: "https://oauth2.googleapis.com/token",
     prompt: "consent",
@@ -17,14 +20,16 @@ export const getGoogleUrl = (from: string) => {
     state: "random_string",
   };
 
-  
   const qs = new URLSearchParams(options);
 
-  return `${rootUrl}?${qs.toString()}`;
+  const provider = new GoogleAuthProvider();
+
+  provider.setCustomParameters({
+    login_hint: from,
+  });
+
+  const url = `${rootUrl}?${qs.toString()}`;
+
+
+  return url;
 };
-
-
-    function done(arg0: null, currentUser: any) {
-      throw new Error("Function not implemented.");
-    }
-

@@ -12,4 +12,4 @@ export const getTikTokUrl = (from: string) => {
     const qs = new URLSearchParams(options);
   
     return `${rootUrl}?${qs.toString()}`;
-  };
+};

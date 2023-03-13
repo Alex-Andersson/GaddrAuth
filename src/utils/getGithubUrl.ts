@@ -6,7 +6,9 @@ export function getGitHubUrl(from: string) {
     redirect_uri: import.meta.env.VITE_GITHUB_OAUTH_REDIRECT_URL as string,
     scope: "user:email",
     state: from,
-  };
+ };
+
+ 
 
   const qs = new URLSearchParams(options);
 
